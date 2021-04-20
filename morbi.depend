@@ -1,0 +1,218 @@
+# depslib dependency file v1.0
+1618102540 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\calendrier.cpp
+	"calendrier.h"
+
+1618173508 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\championnat.cpp
+	"championnat.h"
+
+1618362886 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\equipe.cpp
+	"equipe.h"
+
+1618024232 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\participer.cpp
+
+1618654898 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.cpp
+	"rencontrer.h"
+
+1460395154 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\sqlite\shell.c
+	"msvc.h"
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<assert.h>
+	"sqlite3.h"
+	"sqlite3userauth.h"
+	<ctype.h>
+	<stdarg.h>
+	<signal.h>
+	<pwd.h>
+	<unistd.h>
+	<sys/types.h>
+	<readline/readline.h>
+	<readline/history.h>
+	<editline/readline.h>
+	"linenoise.h"
+	<io.h>
+	<fcntl.h>
+	<sys/time.h>
+	<sys/resource.h>
+	<windows.h>
+
+1460130470 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\sqlite\sqlite3.h
+	<stdarg.h>
+
+1460130470 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\sqlite\sqlite3.c
+	<vxWorks.h>
+	<pthread.h>
+	"mingw.h"
+	"_mingw.h"
+	<stdarg.h>
+	"config.h"
+	<stdint.h>
+	<inttypes.h>
+	<intrin.h>
+	<cmnintrin.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<stddef.h>
+	<TargetConditionals.h>
+	<ctype.h>
+	<time.h>
+	<sys/sysctl.h>
+	<malloc/malloc.h>
+	<libkern/OSAtomic.h>
+	<malloc.h>
+	<pthread.h>
+	"windows.h"
+	<sys/cygwin.h>
+	<errno.h>
+	<process.h>
+	<math.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/time.h>
+	<errno.h>
+	<sys/mman.h>
+	<sys/ioctl.h>
+	<sys/file.h>
+	<sys/param.h>
+	<semaphore.h>
+	<limits.h>
+	<sys/mount.h>
+	<utime.h>
+	<sys/dcmd_blk.h>
+	<sys/statvfs.h>
+	<dlfcn.h>
+	<tcl.h>
+	"sqlite3rtree.h"
+	<unicode/utypes.h>
+	<unicode/uregex.h>
+	<unicode/ustring.h>
+	<unicode/ucol.h>
+	<unicode/ubrk.h>
+	<unicode/utf16.h>
+	<ctype.h>
+	<math.h>
+
+1618025192 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\saison.cpp
+
+1618725678 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.cpp
+	"fonctions.h"
+
+1618790564 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	<windows.h>
+	"lib/sqlite/sqlite3.h"
+	"sql/db.h"
+	"sql/db_championnat.h"
+	"sql/db_equipe.h"
+	"sql/db_rencontrer.h"
+	"class/championnat.h"
+	"class/equipe.h"
+	"class/rencontrer.h"
+	"fonctions.h"
+
+1618726514 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.h
+	<string>
+	<iostream>
+	<fstream>
+	<cmath>
+	<vector>
+
+1618103194 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_calendrier.cpp
+	"db_calendrier.h"
+
+1618344356 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_championnat.cpp
+	"db_championnat.h"
+
+1618619104 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_equipe.cpp
+	"db_equipe.h"
+
+1618024232 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_participer.cpp
+
+1618624488 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_rencontrer.cpp
+	"db_rencontrer.h"
+
+1618025192 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_saison.cpp
+
+1618141350 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db.h
+	<iostream>
+	<string>
+	"../lib/sqlite/sqlite3.h"
+	"../fonctions.h"
+
+1618836502 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db.cpp
+	"db.h"
+
+1618173428 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_championnat.h
+	<iostream>
+	<string>
+	<vector>
+	"../fonctions.h"
+	"../lib/sqlite/sqlite3.h"
+	"db.h"
+	"../class/championnat.h"
+
+1618173682 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\championnat.h
+	<string>
+	<iostream>
+
+1618778610 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\equipe.h
+	<string>
+	<iostream>
+
+1618619018 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_equipe.h
+	<iostream>
+	<string>
+	<vector>
+	"../fonctions.h"
+	"../lib/sqlite/sqlite3.h"
+	"db.h"
+	"../class/equipe.h"
+
+1618138000 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\calendrier.h
+	<string>
+	<iostream>
+
+1618102102 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_calendrier.h
+	<iostream>
+	<string>
+	<vector>
+	"../fonctions.h"
+	"../lib/sqlite/sqlite3.h"
+	"db.h"
+	"../class/calendrier.h"
+
+1618134368 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_participer.h
+	<string>
+	<iostream>
+	"../fonctions.h"
+	"../lib/sqlite/sqlite3.h"
+	"db.h"
+	"../class/participer.h"
+
+1618104772 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\participer.h
+	<string>
+	<iostream>
+
+1618624486 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_rencontrer.h
+	<iostream>
+	<string>
+	<vector>
+	"../fonctions.h"
+	"../lib/sqlite/sqlite3.h"
+	"db.h"
+	"../class/rencontrer.h"
+
+1618677394 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.h
+	<string>
+	<iostream>
+	<regex>
+	"../sql/db.h"
+	"../sql/db_equipe.h"
+

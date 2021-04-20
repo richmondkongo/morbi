@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="morbi" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/morbi" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/morbi" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="class/championnat.cpp" />
+		<Unit filename="class/championnat.h" />
+		<Unit filename="class/equipe.cpp" />
+		<Unit filename="class/equipe.h" />
+		<Unit filename="class/rencontrer.cpp" />
+		<Unit filename="class/rencontrer.h" />
+		<Unit filename="fonctions.cpp" />
+		<Unit filename="fonctions.h" />
+		<Unit filename="lib/sqlite/shell.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/sqlite/sqlite3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/sqlite/sqlite3.h" />
+		<Unit filename="lib/sqlite/sqlite3ext.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="sql/db.cpp" />
+		<Unit filename="sql/db.h" />
+		<Unit filename="sql/db_championnat.cpp" />
+		<Unit filename="sql/db_championnat.h" />
+		<Unit filename="sql/db_equipe.cpp" />
+		<Unit filename="sql/db_equipe.h" />
+		<Unit filename="sql/db_rencontrer.cpp" />
+		<Unit filename="sql/db_rencontrer.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
