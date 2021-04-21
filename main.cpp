@@ -5,7 +5,6 @@
 #include <conio.h>
 
 #include "lib/sqlite/sqlite3.h"
-
 #include "sql/db.h"
 
 #include "sql/db_championnat.h"
@@ -17,6 +16,7 @@
 #include "class/rencontrer.h"
 
 #include "fonctions.h"
+
 
 
 using namespace std;
@@ -269,7 +269,7 @@ void action_one_calendrier(championnat one_chp, rencontrer one_renc) {
 
             upd_rencontrer(one_renc);
             cout << "Modification effectuee avec succes.";
-            // un timer à ajouter plus tard
+            // un timer ï¿½ ajouter plus tard
             action_one_calendrier(one_chp, one_renc);
         } else if (choix_one_cal == 1) {
             // suppression d'un match
@@ -330,7 +330,7 @@ void action_calendrier(championnat one_chp) {
             } else {
                 cout << "Une erreur est survenue veuillez ressayer plus tard.\n";
             }
-            // un timer à ajouter plus tard
+            // un timer ï¿½ ajouter plus tard
             action_calendrier(one_chp);
         } else if(choix_cal > 0) {
             one_renc = sel_rencontrer_cal_by_chp(one_chp.id_chp, choix_cal);
@@ -367,7 +367,7 @@ void action_one_equipe(championnat one_chp, equipe one_eq) {
             one_eq.libelle = (libelle == "*")?one_eq.libelle:libelle;
             upd_equipe(one_eq);
             cout << "Modification effectuee avec succes.";
-            // un timer à ajouter plus tard
+            // un timer ï¿½ ajouter plus tard
             action_one_equipe(one_chp, one_eq);
         } else if (choix_one_eq == 1) {
             // suppression d'equipe
@@ -401,7 +401,7 @@ void action_equipe(championnat one_chp) {
     aff("", "Liste des equipes", "", " ");
     if (eq_by_chp.size() == 0) {
         cout << "Aucune equipe pour ce championnat pour l'instant\n";
-        // un timer à ajouter plus tard
+        // un timer ï¿½ ajouter plus tard
     }
     for (int i_eq_by_chp=0; i_eq_by_chp < eq_by_chp.size(); i_eq_by_chp++) {
         cout << "[ID:" << eq_by_chp[i_eq_by_chp].id_eq << "] " << eq_by_chp[i_eq_by_chp].libelle << endl;
@@ -423,7 +423,7 @@ void action_equipe(championnat one_chp) {
             equipe eq_one_chp(one_chp.id_chp);
             ins_equipe(eq_one_chp);
             cout << "Insertion effectuee avec succes.\n";
-            // un timer à ajouter plus tard
+            // un timer ï¿½ ajouter plus tard
             action_equipe(one_chp);
         } else if (choix_eq > 0) {
             one_eq = sel_equipe_by_championnat_and_eq(one_chp.id_chp ,choix_eq);
@@ -455,7 +455,7 @@ void action_one_championnat(championnat one_chp) {
     do {
         cin >> choix_one_chp;
         if(choix_one_chp == 0) {
-            // retour à la liste des championnat
+            // retour ï¿½ la liste des championnat
             action_championnat();
         } else if (choix_one_chp == 1) {
             action_equipe(one_chp);
@@ -527,7 +527,7 @@ void action_one_championnat(championnat one_chp) {
                 } else {
                     cout << "Une erreur est survenue veuillez ressayer plus tard.\n";
                 }
-                // un timer à ajouter plus tard
+                // un timer ï¿½ ajouter plus tard
             }
             system("cls");
             action_championnat();
@@ -550,7 +550,7 @@ void action_one_championnat(championnat one_chp) {
             one_chp.saison = (saison == "*")?one_chp.saison:saison;
             upd_championnat(one_chp);
             cout << "Modification effectuee avec succes.";
-            // un timer à ajouter plus tard
+            // un timer ï¿½ ajouter plus tard
             action_one_championnat(one_chp);
         } else {
             cout << "Choix indisponible, veuillez ressayer: ";
@@ -580,7 +580,9 @@ void action_championnat() {
     int choix_chp = -1000;
     do {
         cin >> choix_chp;
-        if (choix_chp == 0) {
+        if (choix_chp == -1) {
+            exit(0);
+        } else if (choix_chp == 0) {
             // ajouter un championnat
             system("cls");
             grand_titre("Insertion d'un championnat");
@@ -604,8 +606,10 @@ void action_championnat() {
     } while (one_chp.size()< 1 || choix_chp < -1);
 }
 
-// supprimer un élément à une position donnée
+// supprimer un ï¿½lï¿½ment ï¿½ une position donnï¿½e
 //https://stackoverflow.com/questions/875103/how-do-i-erase-an-element-from-stdvector-by-index
+
+
 int main() {
     /*
     // pour utiliser la taille agrandie de la fenetre
@@ -613,9 +617,14 @@ int main() {
     ShowWindow(hwnd, SW_MAXIMIZE);
     */
     //https://github.com/DenisSamilton/CppConsoleTable
+    //https://stackoverflow.com/questions/8450121/how-do-i-create-a-exe-from-a-cpp-file-in-code-blocks
+
+
     create_database();
     action_championnat();
     getch();
+
+
 
     return 0;
 }

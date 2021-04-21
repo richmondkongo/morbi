@@ -6,14 +6,22 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
+			<Script file="lib_finder.script" />
 			<Target title="Debug">
 				<Option output="bin/Debug/morbi" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
 				<Compiler>
+					<Add option="-m64" />
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-m64" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/morbi" prefix_auto="1" extension_auto="1" />
@@ -57,6 +65,8 @@
 		<Unit filename="sql/db_equipe.h" />
 		<Unit filename="sql/db_rencontrer.cpp" />
 		<Unit filename="sql/db_rencontrer.h" />
-		<Extensions />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

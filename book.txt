@@ -1,0 +1,1 @@
+g++.exe -static -static-libgcc -static-libstdc++ -o "main.exe" lib/sqlite/shell.o lib/sqlite/sqlite3.o sql/*.o class/*.o fonctions.o main.o
