@@ -8,6 +8,7 @@ equipe::equipe(int _id_eq, std::string _libelle, int _id_chp) {
 
 equipe::equipe(int _id_chp) {
     std::cout << "Nom de l'equipe: ";
-    std::cin >> this->libelle;
+    std::cin.ignore();
+    getline(std::cin, libelle);
     id_chp = _id_chp;
 }

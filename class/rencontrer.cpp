@@ -11,14 +11,14 @@ rencontrer::rencontrer(int _id_ren, std::string _jour, int _eq_1, int _eq_2, int
 }
 
 rencontrer::rencontrer(int id_chp) {
-    std::cout << "Date du match(sous le format jj/mm/aaaa, exemple 28/01/1900): ";
+    std::cout << "Date du match(sous le format jj/mm/20aa, exemple 28/01/2020): ";
     int f = 1;
     do {
         if(!good_date(jour) && f>1) {
-            std::cout << "\nLe format de votre date est incorrecte, \nla date doit etre sous la forme jj/mm/aaaa\n et doit etre valide: ";
+            std::cout << "\nLe format de votre date est incorrecte, \nla date doit etre sous la forme jj/mm/aaaa\n et doit etre valide(date >= xx/05/2021): ";
         }
         f += 1;
-        std::cin >> this->jour;
+        std::cin >> jour;
     } while(!good_date(jour));
 
     std::cout << "Id de l'equipe 1: ";
@@ -28,14 +28,14 @@ rencontrer::rencontrer(int id_chp) {
             std::cout << "\nCet equipe est inexistante dans la BD, \nassurez-vous d'entrer un identifiant correcte: ";
         }
         f +=1;
-        std::cin >> this->eq_1;
+        read_choice(eq_1);
     } while (!exist_eq(id_chp, eq_1));
     std::cout << "Id de l'equipe 2: ";
 
     f = 1;
     do {
         if (f == 1) {
-            this->eq_2 = -1000;
+            eq_2 = -1000;
         }
 
         if(!exist_eq(id_chp, eq_2) && f>1) {
@@ -48,8 +48,8 @@ rencontrer::rencontrer(int id_chp) {
 
         }
         f +=1;
-        std::cin >> this->eq_2;
-    } while (!exist_eq(id_chp, eq_2)||this->eq_1 == this->eq_2);
+        read_choice(eq_2);
+    } while (!exist_eq(id_chp, eq_2)||eq_1 == eq_2);
 
     std::cout << "Numero de la journee: ";
     f = 1;
@@ -58,8 +58,8 @@ rencontrer::rencontrer(int id_chp) {
             std::cout << "\nUne journee ne peut etre inferieure a 0, reessayer: ";
         }
         f += 1;
-        std::cin >> this->num_journee;
-    } while(this->num_journee < 1);
+        read_choice(num_journee);
+    } while(num_journee < 1);
 
 
 }
@@ -82,5 +82,6 @@ bool rencontrer::exist_eq(int id_chp, int id_eq) {
 }
 
 bool rencontrer::good_date(std::string _date) {
-    return (regex_match(_date, std::regex("[0-3][0-9]/[0-1][0-2]/[0-9][0-9][0-9][0-9]"))) ? true: false;
+    // return (regex_match(_date, std::regex("[0-3][0-9]/[0-1][0-2]/20[2-9][0-9]"))) ? true: false;
+    return (regex_match(_date, std::regex("(([0-2][0-9])|([3][0-1]))/[0-1][0-2]/20[2-9][1-9]"))) ? true: false;
 }

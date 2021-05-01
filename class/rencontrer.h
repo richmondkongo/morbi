@@ -6,6 +6,7 @@
 
 #include "../sql/db.h"
 #include "../sql/db_equipe.h"
+#include "../fonctions.h"
 
 class rencontrer {
     public:

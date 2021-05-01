@@ -40,6 +40,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Linker>
+			<Add option="-static-libstdc++" />
+			<Add option="-static" />
+		</Linker>
 		<Unit filename="class/championnat.cpp" />
 		<Unit filename="class/championnat.h" />
 		<Unit filename="class/equipe.cpp" />
@@ -57,6 +61,9 @@
 		<Unit filename="lib/sqlite/sqlite3.h" />
 		<Unit filename="lib/sqlite/sqlite3ext.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="sql/db.cpp" />
 		<Unit filename="sql/db.h" />
 		<Unit filename="sql/db_championnat.cpp" />

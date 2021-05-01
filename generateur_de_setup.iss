@@ -4,7 +4,7 @@
 #define MyAppName "morbi"
 #define MyAppVersion "1"
 #define MyAppPublisher "ricorp, Inc."
-#define MyAppExeName "morbi_final_exe.exe"
+#define MyAppExeName "morbi.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -22,7 +22,6 @@ InfoAfterFile=E:\Documents\M1\COURS\Semestre 2\langage C++\prog\morbi\after_inst
 ;PrivilegesRequired=lowest
 OutputBaseFilename=morbi_setup
 SetupIconFile=E:\Documents\M1\COURS\Semestre 2\langage C++\prog\morbi\img_football.ico
-Password=idsi2021
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -34,7 +33,7 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "E:\Documents\M1\COURS\Semestre 2\langage C++\prog\morbi\morbi_final_exe.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\Documents\M1\COURS\Semestre 2\langage C++\prog\morbi\morbi.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

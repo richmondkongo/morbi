@@ -31,7 +31,7 @@ bool ins_equipe(equipe eq) {
     }
 
     sql = "INSERT INTO equipe (libelle, id_chp) "  \
-        "VALUES ('" + eq.libelle + "', '" + std::to_string(eq.id_chp) + "');";
+        "VALUES (\"" + eq.libelle + "\", \"" + std::to_string(eq.id_chp) + "\");";
 
     rc = sqlite3_exec(db, sql.c_str(), callback_ins, 0, &zErrMsg);
     if( rc != SQLITE_OK ){
@@ -82,7 +82,7 @@ bool upd_equipe(equipe eq) {
     }
 
     sql = "UPDATE equipe "  \
-        "SET libelle='" + eq.libelle + "' WHERE id_eq=" + std::to_string(eq.id_eq) + ";";
+        "SET libelle=\"" + eq.libelle + "\" WHERE id_eq=" + std::to_string(eq.id_eq) + ";";
 
     rc = sqlite3_exec(db, sql.c_str(), callback_upd, 0, &zErrMsg);
     if( rc != SQLITE_OK ){

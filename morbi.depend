@@ -2,15 +2,15 @@
 1618102540 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\calendrier.cpp
 	"calendrier.h"
 
-1618173508 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\championnat.cpp
+1619433508 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\championnat.cpp
 	"championnat.h"
 
-1618362886 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\equipe.cpp
+1619433710 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\equipe.cpp
 	"equipe.h"
 
 1618024232 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\participer.cpp
 
-1618654898 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.cpp
+1619439712 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.cpp
 	"rencontrer.h"
 
 1460395154 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\sqlite\shell.c
@@ -99,15 +99,16 @@
 
 1618025192 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\saison.cpp
 
-1618725678 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.cpp
+1619432566 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.cpp
 	"fonctions.h"
 
-1618938808 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\main.cpp
+1619837230 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\main.cpp
 	<iostream>
 	<string>
 	<vector>
 	<windows.h>
 	<conio.h>
+	<unistd.h>
 	"lib/sqlite/sqlite3.h"
 	"sql/db.h"
 	"sql/db_championnat.h"
@@ -117,21 +118,25 @@
 	"class/equipe.h"
 	"class/rencontrer.h"
 	"fonctions.h"
+	"lib/ConsoleTable/ConsoleTable.h"
 
-1618726514 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.h
+1619433346 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.h
 	<string>
 	<iostream>
 	<fstream>
 	<cmath>
 	<vector>
+	<limits>
+	<regex>
+	<unistd.h>
 
 1618103194 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_calendrier.cpp
 	"db_calendrier.h"
 
-1618344356 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_championnat.cpp
+1619731330 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_championnat.cpp
 	"db_championnat.h"
 
-1618619104 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_equipe.cpp
+1619731330 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_equipe.cpp
 	"db_equipe.h"
 
 1618024232 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_participer.cpp
@@ -210,10 +215,44 @@
 	"db.h"
 	"../class/rencontrer.h"
 
-1618677394 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.h
+1619359728 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.h
 	<string>
 	<iostream>
 	<regex>
 	"../sql/db.h"
 	"../sql/db_equipe.h"
+	"../fonctions.h"
+
+1606842986 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\fort.hpp
+	<iomanip>
+	<sstream>
+	<string>
+	<stdexcept>
+	<type_traits>
+	"fort.h"
+
+1606842986 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\fort.h
+	<stddef.h>
+	<stdlib.h>
+	<stdint.h>
+	<limits.h>
+
+1619364816 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\resource.rc
+
+1554844662 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\termcolor\termcolor.hpp
+	<unistd.h>
+	<io.h>
+	<windows.h>
+	<iostream>
+	<cstdio>
+
+1583072282 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\consoletable\consoletable.cpp
+	"ConsoleTable.h"
+
+1583072282 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\consoletable\consoletable.h
+	<string>
+	<vector>
+	<iostream>
+	<sstream>
+	<algorithm>
 

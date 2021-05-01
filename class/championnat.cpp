@@ -9,14 +9,15 @@ championnat::championnat(int _id_chp, std::string _libelle, std::string _pays, s
 }
 
 championnat::championnat() {
+    std::cin.ignore();
     std::cout << "libelle: ";
-    std::cin >> this->libelle;
+    getline(std::cin, libelle);
     std::cout << "\npays: ";
-    std::cin >> this->pays;
+    getline(std::cin, pays);
     std::cout << "\ndivision: ";
-    std::cin >> this->division;
+    getline(std::cin, division);
     std::cout << "\nSaison: ";
-    std::cin >> this->saison;
-    this->id_chp = 0;
+    getline(std::cin, saison);
+    id_chp = 0;
 }
 

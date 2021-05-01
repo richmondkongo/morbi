@@ -34,23 +34,6 @@ void grand_titre(std::string title) {
     std::cout << "\n\n";
 }
 
-int menu_championnat(){
-    std::cout << "\n\n";
-    aff("|", "", "|");
-    aff("|", "MENU CHAMPIONNAT", "|", " ");
-    aff("|", "", "|");
-    std::cout << "\n\n";
-    aff("", "1. Voir les championnats", "", " ");
-    aff("", "2. Ajouter un championnat", "", " ");
-    //aff("", "3. Modifer un championnat", "", " ");
-    //aff("", "  4. Supprimer un championnat", "", " ");
-    std::cout << "\n\nVeuillez entrer votre choix: " << std::endl;
-    int c = -1;
-    std::cin >> c;
-    system("cls");
-    return c;
-}
-
 
 int good_choix_score(int id, std::vector<int> liste_id_renc) {
     for(int i_liste_id_renc=0; i_liste_id_renc < liste_id_renc.size(); ++i_liste_id_renc) {
@@ -59,5 +42,59 @@ int good_choix_score(int id, std::vector<int> liste_id_renc) {
         }
     }
     return -1;
+}
+
+bool read_choice(int &N) {
+    while (!(std::cin >> N)){
+        if ( std::cin.eof() ){
+            return false;
+        } else if ( std::cin.fail() ) {
+            std::cout << "Saisie incorrecte, recommencez : ";
+            std::cin.clear();
+            std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+        }
+    }
+    return true;
+}
+
+bool is_int(std::string str) {
+    return (regex_match(str, std::regex("[0-9]{1,2}"))) ? true: false;
+}
+
+void splashscreen(float tps) {
+    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    std::cout << "                                BIENVENUE SUR NOTRE APPLICATION DE GESTION DE CHAMPIONNATS DE FOOTBALL, DENOMMEE:\n\n" << std::endl;
+    std::cout << "                                     ....       ...   ..............   ..........       ..........     ...." << std::endl;
+    std::cout << "                                     .   .     .  .   .            .   .          .     .         .    .  ." << std::endl;
+    std::cout << "                                     .    .   .   .   .   ......   .   .   .....   .    .   ....   .   .  ." << std::endl;
+    std::cout << "                                     .      .     .   .   .    .   .   .   .    .  .    .   .  .   .   .  ." << std::endl;
+    std::cout << "                                     .  .      .  .   .   .    .   .   .   ......  .    .   ....   .   .  ." << std::endl;
+    std::cout << "                                     .  .   .  .  .   .   .    .   .   .   .  .  .      .        .     .  ." << std::endl;
+    std::cout << "                                     .  .      .  .   .   .    .   .   .   .   .  .     .   ....   .   .  ." << std::endl;
+    std::cout << "                                     .  .      .  .   .   ......   .   .   .    .  .    .   .  .   .   .  ." << std::endl;
+    std::cout << "                                     .  .      .  .   .            .   .   .    .  .    .   ....  .    .  ." << std::endl;
+    std::cout << "                                     ....      ....   ..............   .....    ....    .........      ...." << std::endl;
+    std::cout << "\n\n                                          VEUILLEZ PATIENTER LE TEMPS QUE LES DONNEES SE CHARGENT..." << std::endl;
+    sleep(tps);
+}
+
+
+void splashscreen_end(float tps) {
+    system("cls");
+    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    std::cout << "                                MERCI D'AVOIR UTILISER NOTRE APPLICATION DE GESTION DE CHAMPIONNATS DE FOOTBALL\n\n" << std::endl;
+    std::cout << "                                     ....       ...   ..............   ..........       ..........     ...." << std::endl;
+    std::cout << "                                     .   .     .  .   .            .   .          .     .         .    .  ." << std::endl;
+    std::cout << "                                     .    .   .   .   .   ......   .   .   .....   .    .   ....   .   .  ." << std::endl;
+    std::cout << "                                     .      .     .   .   .    .   .   .   .    .  .    .   .  .   .   .  ." << std::endl;
+    std::cout << "                                     .  .      .  .   .   .    .   .   .   ......  .    .   ....   .   .  ." << std::endl;
+    std::cout << "                                     .  .   .  .  .   .   .    .   .   .   .  .  .      .        .     .  ." << std::endl;
+    std::cout << "                                     .  .      .  .   .   .    .   .   .   .   .  .     .   ....   .   .  ." << std::endl;
+    std::cout << "                                     .  .      .  .   .   ......   .   .   .    .  .    .   .  .   .   .  ." << std::endl;
+    std::cout << "                                     .  .      .  .   .            .   .   .    .  .    .   ....  .    .  ." << std::endl;
+    std::cout << "                                     ....      ....   ..............   .....    ....    .........      ...." << std::endl;
+    std::cout << "\n\n                                          NOUS ATTENDONS VOTRE PROCHAIN USAGE AVEC EMPRESSEMENT..." << std::endl;
+    sleep(tps);
+    exit(0);
 }
 

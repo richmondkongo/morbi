@@ -1,1 +1,5 @@
-g++.exe -static -static-libgcc -static-libstdc++ -o "main.exe" lib/sqlite/shell.o lib/sqlite/sqlite3.o sql/*.o class/*.o fonctions.o main.o
+ajout icon sur exe: https://www.youtube.com/watch?v=ybbG9GMkVqg
+modification la taille de la console: https://stackoverflow.com/questions/21238806/how-to-set-output-console-width-in-visual-studio
+tableau: https://github.com/766F6964/ConsoleTable
+
+g++.exe -static -static-libgcc -static-libstdc++ -o "main.exe" obj/Debug/lib/sqlite/shell.o obj/Debug/lib/sqlite/sqlite3.o obj/Debug/sql/*.o obj/Debug/class/*.o obj/Debug/fonctions.o obj/Debug/main.o obj/Debug/resource.res

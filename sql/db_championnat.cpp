@@ -30,9 +30,10 @@ bool ins_championnat(championnat ch) {
     if( rc ) {
         fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
     }
-
+    std::cout << "--------------------" << ch.libelle << "--------------------" << std::endl;
+    sleep(3);
     sql = "INSERT INTO championnat (libelle, pays, division, saison) "  \
-        "VALUES ('" + ch.libelle + "', '" + ch.pays + "', '" + ch.division + "', '" + ch.saison + "');";
+        "VALUES (\"" + ch.libelle + "\", \"" + ch.pays + "\", \"" + ch.division + "\", \"" + ch.saison + "\");";
 
     rc = sqlite3_exec(db, sql.c_str(), callback_ins, 0, &zErrMsg);
     if( rc != SQLITE_OK ){
@@ -83,7 +84,7 @@ bool upd_championnat(championnat ch) {
     }
 
     sql = "UPDATE championnat "  \
-        "SET libelle='" + ch.libelle + "', pays='" + ch.pays + "', division='" + ch.division + "', saison='" + ch.saison + "' WHERE id_chp=" + std::to_string(ch.id_chp) + ";";
+        "SET libelle=\"" + ch.libelle + "\", pays=\"" + ch.pays + "\", division=\"" + ch.division + "\", saison=\"" + ch.saison + "\" WHERE id_chp=" + std::to_string(ch.id_chp) + ";";
 
     rc = sqlite3_exec(db, sql.c_str(), callback_upd, 0, &zErrMsg);
     if( rc != SQLITE_OK ){
