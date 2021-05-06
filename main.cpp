@@ -16,8 +16,11 @@
 #include "class/rencontrer.h"
 #include "fonctions.h"
 #include "lib/ConsoleTable/ConsoleTable.h"
+#include "lib/termcolor/termcolor.hpp"
+
 
 using namespace std;
+using namespace termcolor;
 
 // fonction de gestion des menus
 void action_championnat();
@@ -32,7 +35,7 @@ void action_one_resultat(championnat one_chp, rencontrer one_renc);
 
 void action_classement(championnat one_chp) {
     system("cls");
-    grand_titre("Classement du championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
+    grand_titre("Classement du championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
     vector<rencontrer> clas = sel_rencontrer_cal(one_chp.id_chp);
     vector<equipe> eq = sel_equipe_by_championnat(one_chp.id_chp);
     for (int i=0; i < eq.size(); i++) {
@@ -73,12 +76,12 @@ void action_classement(championnat one_chp) {
     table.setStyle(0);
 
     for (int i=0; i < eq_classe.size(); i++) {
-        //aff("", std::to_string(i+1) , "");
+        //aff("", to_string(i+1) , "");
         //cout << eq_classe[i].libelle << "\necart: " << eq_classe[i].ecart << "\npoint: " << eq_classe[i].point << "\nmatch nul: " << eq_classe[i].m_nul << "\nperdu: " << eq_classe[i].m_def << "\ngagne: " << eq_classe[i].m_vict << endl;
         table += { to_string(i+1), eq_classe[i].libelle, to_string(eq_classe[i].point), to_string(eq_classe[i].ecart), to_string(eq_classe[i].m_def), to_string(eq_classe[i].m_nul), to_string(eq_classe[i].m_vict) };
     }
     table.sort(true);
-    std::cout << table;
+    cout << table;
 
     int choix_cla = -1000;
     do {
@@ -94,8 +97,8 @@ void action_classement(championnat one_chp) {
 
 void action_one_resultat(championnat one_chp, rencontrer one_renc) {
     system("cls");
-    grand_titre("Resultat " + std::to_string(one_renc.id_ren) + ": du " + one_renc.jour + "(" + one_renc.libelle_1 + " " \
-                            + std::to_string(one_renc.score_1) + " vs " + std::to_string(one_renc.score_2) + " " + one_renc.libelle_2 + ")" );
+    grand_titre("Resultat " + to_string(one_renc.id_ren) + ": du " + one_renc.jour + "(" + one_renc.libelle_1 + " " \
+                            + to_string(one_renc.score_1) + " vs " + to_string(one_renc.score_2) + " " + one_renc.libelle_2 + ")" );
 
     aff("", "-2. Sortir de l'application ", "", " ");
     aff("", "-1. Retour au menu des resultats ", "", " ");
@@ -111,14 +114,14 @@ void action_one_resultat(championnat one_chp, rencontrer one_renc) {
             splashscreen_end();
         } else if (choix_one_score == 0) {
             system("cls");
-            grand_titre("Modifier le resultat " + std::to_string(one_renc.id_ren) + ": du " + one_renc.jour + "(" + one_renc.libelle_1 + " " \
-                + std::to_string(one_renc.score_1) + " vs " + std::to_string(one_renc.score_2) + " " + one_renc.libelle_2 + ")" );
+            grand_titre("Modifier le resultat " + to_string(one_renc.id_ren) + ": du " + one_renc.jour + "(" + one_renc.libelle_1 + " " \
+                + to_string(one_renc.score_1) + " vs " + to_string(one_renc.score_2) + " " + one_renc.libelle_2 + ")" );
 
-            cout << "Modifier le score de l'equipe 1 (ancienne valeur=" + std::to_string(one_renc.score_1) + "):";
+            cout << "Modifier le score de l'equipe 1 (ancienne valeur=" + to_string(one_renc.score_1) + "):";
             int f = 0;
             string s="-2";
             do {
-                if (f > 0 && std::stoi(s) < 0) { cout << "le score doit etre positif: "; }
+                if (f > 0 && std::stoi(s) < 0) { cout << red << "le score doit etre positif: " << reset; }
                 f += 1;
                 cin >> s;
                 if (s == "*" || s =="-1") {
@@ -136,11 +139,11 @@ void action_one_resultat(championnat one_chp, rencontrer one_renc) {
                 one_renc.score_1 = (s == "*")?one_renc.score_1:std::stoi(s);
             }
 
-            cout << "Modifier le score de l'equipe 2 (ancienne valeur=" + std::to_string(one_renc.score_2) + "):";
+            cout << "Modifier le score de l'equipe 2 (ancienne valeur=" + to_string(one_renc.score_2) + "):";
             f = 0;
             s="-2";
             do {
-                if (f > 0 && std::stoi(s) < 0) { cout << "le score doit etre positif: "; }
+                if (f > 0 && std::stoi(s) < 0) { cout << red << "le score doit etre positif: " << reset; }
                 f += 1;
                 cin >> s;
                 if (s == "*" || s =="-1") {
@@ -159,7 +162,7 @@ void action_one_resultat(championnat one_chp, rencontrer one_renc) {
             }
 
             if(upd_rencontrer(one_renc)) {
-                cout << "Modification effectuee avec succes.";
+                cout << green << "Modification effectuee avec succes." << reset;
             } else {
                 cout << "Un probleme est survenu, reessayez plus tard.";
             }
@@ -167,13 +170,13 @@ void action_one_resultat(championnat one_chp, rencontrer one_renc) {
             action_one_resultat(one_chp, one_renc);
         } else if (choix_one_score == 1) {
             system("cls");
-            grand_titre("Supprimer le resultat " + std::to_string(one_renc.id_ren) + ": du " + one_renc.jour + "(" + one_renc.libelle_1 + " " \
-                + std::to_string(one_renc.score_1) + " vs " + std::to_string(one_renc.score_2) + " " + one_renc.libelle_2 \
-                + ")  [journee:" + std::to_string(one_renc.num_journee) + ")" );
+            grand_titre("Supprimer le resultat " + to_string(one_renc.id_ren) + ": du " + one_renc.jour + "(" + one_renc.libelle_1 + " " \
+                + to_string(one_renc.score_1) + " vs " + to_string(one_renc.score_2) + " " + one_renc.libelle_2 \
+                + ")  [journee:" + to_string(one_renc.num_journee) + ")" );
 
-            aff("", "Voulez-vous Supprimer vraiment ce resultat " + std::to_string(one_renc.id_ren) + ": du " + one_renc.jour + "(" + one_renc.libelle_1 + " " \
-                + std::to_string(one_renc.score_1) + " vs " + std::to_string(one_renc.score_2) + " " + one_renc.libelle_2 \
-                + ")  [journee:" + std::to_string(one_renc.num_journee) + ")" \
+            aff("", "Voulez-vous Supprimer vraiment ce resultat " + to_string(one_renc.id_ren) + ": du " + one_renc.jour + "(" + one_renc.libelle_1 + " " \
+                + to_string(one_renc.score_1) + " vs " + to_string(one_renc.score_2) + " " + one_renc.libelle_2 \
+                + ")  [journee:" + to_string(one_renc.num_journee) + ")" \
                 + "?\nO:oui\nN:non", "", " ");
 
             string del_score = "n";
@@ -183,7 +186,7 @@ void action_one_resultat(championnat one_chp, rencontrer one_renc) {
                 one_renc.score_1 = -1;
                 one_renc.score_2 = -1;
                 if(upd_rencontrer(one_renc)) {
-                    cout << "Suppression effectuee avec succes." << endl;
+                    cout << green << "Suppression effectuee avec succes." << reset << endl;
                 } else {
                     cout << "Un probleme est survenu, reessayez plus tard." << endl;
                 }
@@ -195,18 +198,18 @@ void action_one_resultat(championnat one_chp, rencontrer one_renc) {
                 action_one_resultat(one_chp, one_renc);
             }
         } else {
-            cout << "Choix indisponible, veuillez ressayer: ";
+            cout << red << "Choix indisponible, veuillez ressayer: " << reset;
         }
     } while (choix_one_score < -1 && choix_one_score > 1);
 }
 
 void action_resultat(championnat one_chp) {
     system("cls");
-    grand_titre("Resultats du championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
+    grand_titre("Resultats du championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
     vector<rencontrer> renc_by_chp = sel_rencontrer_cal(one_chp.id_chp);
     vector<int> liste_id_renc_score = {};
     if (renc_by_chp.size() == 0) {
-        cout << "Aucun resultat pour l'instant." << endl;
+        cout << yellow << "Aucun resultat pour l'instant." << reset << endl;
     }
 
     ConsoleTable table{"ID", "date du match", "equipes et scores", "journee"};
@@ -218,11 +221,11 @@ void action_resultat(championnat one_chp) {
     for (int i_renc_by_chp=0; i_renc_by_chp < renc_by_chp.size(); i_renc_by_chp++) {
         if (renc_by_chp[i_renc_by_chp].score_1 > -1 && renc_by_chp[i_renc_by_chp].score_2 > -1) {
             //cout << "[ID:" << renc_by_chp[i_renc_by_chp].id_ren << "] le " + renc_by_chp[i_renc_by_chp].jour + "  " + renc_by_chp[i_renc_by_chp].libelle_1 + " " \
-                + std::to_string(renc_by_chp[i_renc_by_chp].score_1) + " vs " + std::to_string(renc_by_chp[i_renc_by_chp].score_2) + " " + renc_by_chp[i_renc_by_chp].libelle_2 << \
+                + to_string(renc_by_chp[i_renc_by_chp].score_1) + " vs " + to_string(renc_by_chp[i_renc_by_chp].score_2) + " " + renc_by_chp[i_renc_by_chp].libelle_2 << \
                 " [ journee: "  << renc_by_chp[i_renc_by_chp].num_journee << " ] " << endl;
             table += { to_string(renc_by_chp[i_renc_by_chp].id_ren), \
-            renc_by_chp[i_renc_by_chp].jour, renc_by_chp[i_renc_by_chp].libelle_1 + "  (" + std::to_string(renc_by_chp[i_renc_by_chp].score_1) \
-            + ") vs (" + std::to_string(renc_by_chp[i_renc_by_chp].score_2) + ")  " + renc_by_chp[i_renc_by_chp].libelle_2, \
+            renc_by_chp[i_renc_by_chp].jour, renc_by_chp[i_renc_by_chp].libelle_1 + "  (" + to_string(renc_by_chp[i_renc_by_chp].score_1) \
+            + ") vs (" + to_string(renc_by_chp[i_renc_by_chp].score_2) + ")  " + renc_by_chp[i_renc_by_chp].libelle_2, \
             to_string(renc_by_chp[i_renc_by_chp].num_journee) };
 
             liste_id_renc_score.push_back(renc_by_chp[i_renc_by_chp].id_ren);
@@ -230,10 +233,10 @@ void action_resultat(championnat one_chp) {
     }
 
     table.sort(true);
-    std::cout << table;
+    cout << table;
 
     if (liste_id_renc_score.size() == 0 && renc_by_chp.size() > 0) {
-        cout << "Aucun resultat pour l'instant." << endl;
+        cout << yellow << "Aucun resultat pour l'instant." << reset << endl;
     }
     aff("", "", "");
     aff("", "-2. Sortir de l'application ", "", " ");
@@ -249,7 +252,7 @@ void action_resultat(championnat one_chp) {
             action_one_championnat(one_chp);
         } else if(choix_cal == 0) {
             system("cls");
-            grand_titre("Ajouter un resultat au championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
+            grand_titre("Ajouter un resultat au championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
             vector<int> liste_id_renc_non_score = {};
 
             ConsoleTable table_m{"ID", "date du match", "equipes", "journee"};
@@ -259,7 +262,7 @@ void action_resultat(championnat one_chp) {
             for (int i_renc_by_chp=0; i_renc_by_chp < renc_by_chp.size(); i_renc_by_chp++) {
                 if (renc_by_chp[i_renc_by_chp].score_1 < 0 || renc_by_chp[i_renc_by_chp].score_2 < 0) {
                     //cout << "[ID:" << renc_by_chp[i_renc_by_chp].id_ren << "] le " + renc_by_chp[i_renc_by_chp].jour + "  " + renc_by_chp[i_renc_by_chp].libelle_1 + " " \
-                        + std::to_string(renc_by_chp[i_renc_by_chp].score_1) + " vs " + std::to_string(renc_by_chp[i_renc_by_chp].score_2) + " " + renc_by_chp[i_renc_by_chp].libelle_2 << \
+                        + to_string(renc_by_chp[i_renc_by_chp].score_1) + " vs " + to_string(renc_by_chp[i_renc_by_chp].score_2) + " " + renc_by_chp[i_renc_by_chp].libelle_2 << \
                         " [ journee: "  << renc_by_chp[i_renc_by_chp].num_journee << " ] " << endl;
                     table_m += { to_string(renc_by_chp[i_renc_by_chp].id_ren), \
                         renc_by_chp[i_renc_by_chp].jour, renc_by_chp[i_renc_by_chp].libelle_1 + " vs " \
@@ -269,13 +272,13 @@ void action_resultat(championnat one_chp) {
                 }
             }
             table_m.sort(true);
-            std::cout << table_m;
+            cout << table_m;
 
             if (liste_id_renc_non_score.size() == 0 && renc_by_chp.size() > 0) {
-                cout << "Aucun resultat pour l'instant." << endl;
+                cout << yellow <<"Aucun resultat pour l'instant." << reset << endl;
             }
 
-            std::cout << "Entrer l'ID du match dont vous voulez entrer le score \n(si vous voulez annuler et retourner au menu des resultats entrer -1): ";
+            cout << "Entrer l'ID du match dont vous voulez entrer le score \n(si vous voulez annuler et retourner au menu des resultats entrer -1): ";
             int choix_score = -1000;
             do {
                 read_choice(choix_score);
@@ -289,7 +292,7 @@ void action_resultat(championnat one_chp) {
                     cout << "\tScore de l'equipe 1 (" << one_renc[0].libelle_1 << "): ";
                     int f = 0;
                     do {
-                        if (f > 0 && one_renc[0].score_1 < 0) { cout << "le score doit etre positif: "; }
+                        if (f > 0 && one_renc[0].score_1 < 0) { cout << red << "le score doit etre positif: " << reset; }
                         f += 1;
                         read_choice(one_renc[0].score_1);
                     } while (one_renc[0].score_1 < -1);
@@ -298,7 +301,7 @@ void action_resultat(championnat one_chp) {
                     cout << "\tScore de l'equipe 2 (" << one_renc[0].libelle_2 << "): ";
                     f = 0;
                     do {
-                        if (f > 0 && one_renc[0].score_2 < 0) { cout << "le score doit etre positif: "; }
+                        if (f > 0 && one_renc[0].score_2 < 0) { cout << red << "le score doit etre positif: " << reset; }
                         f += 1;
                         read_choice(one_renc[0].score_2);
                     } while (one_renc[0].score_2 < -1);
@@ -307,7 +310,7 @@ void action_resultat(championnat one_chp) {
                     upd_rencontrer(one_renc[0]);
                     action_resultat(one_chp);
                 } else {
-                    cout << "Choix indisponible, reessayer: ";
+                    cout << red << "Choix indisponible, reessayer: " << reset;
                 }
             } while(choix_score < -1 || good_choix_score(choix_score, liste_id_renc_non_score) < 0);
 
@@ -316,18 +319,18 @@ void action_resultat(championnat one_chp) {
             if (good_choix_score(choix_cal, liste_id_renc_score) > -1) {
                 action_one_resultat(one_chp, sel_rencontrer_cal_by_chp(one_chp.id_chp, liste_id_renc_score[good_choix_score(choix_cal, liste_id_renc_score)])[0]);
             } else {
-                cout << "Choix indisponible, veuillez ressayer: ";
+                cout << red << "Choix indisponible, veuillez ressayer: " << reset;
             }
         } else {
-            cout << "Choix indisponible, veuillez ressayer: ";
+            cout << red << "Choix indisponible, veuillez ressayer: " << reset;
         }
     } while (one_renc.size() < 1 || choix_cal < -1);
 }
 
 void action_one_calendrier(championnat one_chp, rencontrer one_renc) {
     system("cls");
-    grand_titre("Menu concernant le match " + std::to_string(one_renc.id_ren) + " du " + one_renc.jour \
-                + ":" + one_renc.libelle_1 + " vs " + one_renc.libelle_2 + "[journee:" + std::to_string(one_renc.num_journee) + "]");
+    grand_titre("Menu concernant le match " + to_string(one_renc.id_ren) + " du " + one_renc.jour \
+                + ":" + one_renc.libelle_1 + " vs " + one_renc.libelle_2 + "[journee:" + to_string(one_renc.num_journee) + "]");
 
     aff("", "-2. Sortir de l'application ", "", " ");
     aff("", "-1. Retour au calendrier", "", " ");
@@ -345,53 +348,49 @@ void action_one_calendrier(championnat one_chp, rencontrer one_renc) {
         } else if (choix_one_cal == 0) {
             // modification du match
             system("cls");
-            std::cout << "Vous allez apporter des modifications au match " + std::to_string(one_renc.id_ren) + " du " + one_renc.jour \
-                + ":" + one_renc.libelle_1 + " vs " + one_renc.libelle_2 + "[journee:" + std::to_string(one_renc.num_journee) + "]" + "?(si vous ne voulez pas retoucher un champs, taper '*')\n";
+            cout << "Vous allez apporter des modifications au match " + to_string(one_renc.id_ren) + " du " + one_renc.jour \
+                + ":" + one_renc.libelle_1 + " vs " + one_renc.libelle_2 + "[journee:" + to_string(one_renc.num_journee) + "]" + "?(si vous ne voulez pas retoucher un champs, taper '*')\n";
             std::string jour, eq_1="-999", eq_2="-1000", num_journee;
 
-            std::cout << "Date du match(sous le format jj/mm/aaaa, exemple 28/01/1900)\n(valeur actuelle=" + one_renc.jour + "): ";
+            cout << "Date du match(sous le format jj/mm/aaaa, exemple 28/01/1900)\n(valeur actuelle=" + one_renc.jour + "): ";
             int f = 1;
             do {
                 if(!one_renc.good_date(jour) && f>1) {
-                    std::cout << "\nLe format de votre date est incorrecte, \nla date doit etre sous la forme jj/mm/aaaa\n et doit etre valide(date >= xx/05/2021): ";
+                    cout << red << "\nLe format de votre date est incorrecte, \nla date doit etre sous la forme jj/mm/aaaa\n et doit etre valide(date >= xx/05/2021): " << reset;
                 }
                 f += 1;
-                std::cin >> jour;
+                cin >> jour;
             } while(!one_renc.good_date(jour) && jour != "*");
             one_renc.jour = (jour == "*")?one_renc.jour:jour;
-
-
 
             vector<equipe> eq_by_chp = sel_equipe_by_championnat(one_chp.id_chp);
             aff("", "Liste des equipes", "", " ");
             if (eq_by_chp.size() == 0) {
-                cout << "Aucune equipe pour ce championnat pour l'instant\n";
+                cout << yellow << "Aucune equipe pour ce championnat pour l'instant\n" << reset;
             } else {
                 for (int i_eq_by_chp=0; i_eq_by_chp < eq_by_chp.size(); i_eq_by_chp++) {
                     cout << "[ID:" << eq_by_chp[i_eq_by_chp].id_eq << "] " << eq_by_chp[i_eq_by_chp].libelle << endl;
                 }
             }
 
-
-
-            std::cout << "\n\nEquipe 1 du match(valeur actuelle=" + std::to_string(one_renc.eq_1) + "=" + one_renc.libelle_1 + ", entrer l'ID de la nouvel equipe 1): ";
+            cout << "\n\nEquipe 1 du match(valeur actuelle=" + to_string(one_renc.eq_1) + "=" + one_renc.libelle_1 + ", entrer l'ID de la nouvel equipe 1): ";
             f = 1;
             do {
                 if(!one_renc.exist_eq(one_chp.id_chp, std::stoi(eq_1)) && f>1) {
-                    std::cout << "\nCet equipe est inexistante dans la BD, \nassurez-vous d'entrer un identifiant correcte: ";
+                    cout << red <<"\nCet equipe est inexistante dans la BD, \nassurez-vous d'entrer un identifiant correcte: " << reset;
                 }
                 f +=1;
-                std::cin >> eq_1;
+                cin >> eq_1;
                 if (!is_int(eq_1) && eq_1 == "*") {
                     break;
                 } else if (!is_int(eq_1) && eq_1 != "*") {
-                    std::cout << "\nVous devez entrer un entier ";
+                    cout << red << "\nVous devez entrer un entier " << reset;
                     eq_1 = "-999";
                 }
             } while (!one_renc.exist_eq(one_chp.id_chp, std::stoi(eq_1)));
             one_renc.eq_1 = (eq_1 == "*")?one_renc.eq_1:std::stoi(eq_1);
 
-            std::cout << "\nEquipe 2 du match(valeur actuelle=" + std::to_string(one_renc.eq_2) + "=" + one_renc.libelle_2 + ", entrer l'ID de la nouvel equipe 2): ";
+            cout << "\nEquipe 2 du match(valeur actuelle=" + to_string(one_renc.eq_2) + "=" + one_renc.libelle_2 + ", entrer l'ID de la nouvel equipe 2): ";
             f = 1;
             do {
                 if (f == 1) {
@@ -399,42 +398,40 @@ void action_one_calendrier(championnat one_chp, rencontrer one_renc) {
                 }
 
                 if(!one_renc.exist_eq(one_chp.id_chp, std::stoi(eq_2)) && f>1) {
-                    std::cout << "\nCet equipe est inexistante dans la BD, \nassurez-vous d'entrer un identifiant correcte: ";
+                    cout << red <<"\nCet equipe est inexistante dans la BD, \nassurez-vous d'entrer un identifiant correcte: " << reset;
                 }
 
                 if (one_renc.eq_1 == std::stoi(eq_2)) {
-                    std::cout << "\nUne equipe ne peut jouer contre elle-meme, \nassurez-vous d'entrer un identifiant correcte: ";
+                    cout << red << "\nUne equipe ne peut jouer contre elle-meme, \nassurez-vous d'entrer un identifiant correcte: " << reset;
                 }
                 f +=1;
-                std::cin >> eq_2;
+                cin >> eq_2;
                 if (!is_int(eq_2) && eq_2 == "*") {
                     break;
                 } else if (!is_int(eq_2) && eq_2 != "*") {
-                    std::cout << "\nVous devez entrer un entier ";
+                    cout << red << "\nVous devez entrer un entier " << reset;
                     eq_2 = "-1000";
                 }
             } while (!one_renc.exist_eq(one_chp.id_chp, std::stoi(eq_2))||one_renc.eq_1 == std::stoi(eq_2));
             one_renc.eq_2 = (eq_2 == "*")?one_renc.eq_2:std::stoi(eq_2);
 
-            std::cout << "\nNumero de la journee du match(valeur actuelle=" + std::to_string(one_renc.num_journee) + "): ";
+            cout << "\nNumero de la journee du match(valeur actuelle=" + to_string(one_renc.num_journee) + "): ";
             f = 1;
             do {
-                if (f>1 && std::stoi(num_journee) < 1) {
-                    std::cout << "\nUne journee ne peut etre inferieure a 0, reessayer: ";
-                }
+                if (f>1 && std::stoi(num_journee) < 1) { cout << red << "\nUne journee ne peut etre inferieure a 0, reessayer: " << reset; }
                 f += 1;
-                std::cin >> num_journee;
+                cin >> num_journee;
                 if (!is_int(num_journee) && num_journee == "*") {
                     break;
                 } else if (!is_int(num_journee) && num_journee != "*") {
-                    std::cout << "\nVous devez entrer un entier ";
+                    cout << "\nVous devez entrer un entier ";
                     num_journee = "-999";
                 }
             } while(std::stoi(num_journee) < 1);
             one_renc.num_journee = (num_journee == "*")?one_renc.num_journee:std::stoi(num_journee);
 
             if (upd_rencontrer(one_renc)) {
-                cout << "Modification effectuee avec succes.";
+                cout << green << "Modification effectuee avec succes." << reset;
             } else {
                 cout << "Un problème est survenu veuillez reessayer plus tard.";
             }
@@ -443,15 +440,15 @@ void action_one_calendrier(championnat one_chp, rencontrer one_renc) {
         } else if (choix_one_cal == 1) {
             // suppression d'un match
             system("cls");
-            aff("", "Voulez-vous Supprimer vraiment le match " + std::to_string(one_renc.id_ren) + " du " + one_renc.jour \
-                + ":" + one_renc.libelle_1 + " vs " + one_renc.libelle_2 + "[journee:" + std::to_string(one_renc.num_journee) + "]" \
+            aff("", "Voulez-vous Supprimer vraiment le match " + to_string(one_renc.id_ren) + " du " + one_renc.jour \
+                + ":" + one_renc.libelle_1 + " vs " + one_renc.libelle_2 + "[journee:" + to_string(one_renc.num_journee) + "]" \
                 + "?\nO:oui\nN:non", "", " ");
             string del_renc = "n";
             cin >> del_renc;
             if (del_renc.size()==1 && (del_renc == "o" || del_renc == "O")) {
                 cout << "Suppression du match en cours...\n";
                 if(del_rencontrer(one_renc.id_ren)) {
-                    cout << "Match supprime avec succes.\n";
+                    cout << green << "Match supprime avec succes.\n" << reset;
                     sleep(2);
                     action_calendrier(one_chp);
                 } else {
@@ -466,17 +463,17 @@ void action_one_calendrier(championnat one_chp, rencontrer one_renc) {
             }
 
         } else {
-            cout << "Choix indisponible, veuillez ressayer: ";
+            cout << red << "Choix indisponible, veuillez ressayer: " << reset;
         }
     } while (choix_one_cal < -1 && choix_one_cal > 1);
 }
 
 void action_calendrier(championnat one_chp) {
     system("cls");
-    grand_titre("Calendrier du championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
+    grand_titre("Calendrier du championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
     vector<rencontrer> renc_by_chp = sel_rencontrer_cal(one_chp.id_chp);
     if (renc_by_chp.size() == 0) {
-        cout << "Aucun match n'a ete programme pour l'instant." << endl;
+        cout << yellow << "Aucun match n'a ete programme pour l'instant." << reset << endl;
     }
 
     ConsoleTable table{"ID", "date du match", "equipes", "journee"};
@@ -488,11 +485,11 @@ void action_calendrier(championnat one_chp) {
             " " << renc_by_chp[i_renc_by_chp].libelle_1 << " vs " << renc_by_chp[i_renc_by_chp].libelle_2 << \
             " [ journee: "  << renc_by_chp[i_renc_by_chp].num_journee << " ] " << endl;
 
-        table += {std::to_string(renc_by_chp[i_renc_by_chp].id_ren), renc_by_chp[i_renc_by_chp].jour, renc_by_chp[i_renc_by_chp].libelle_1 + " vs " + renc_by_chp[i_renc_by_chp].libelle_2, to_string(renc_by_chp[i_renc_by_chp].num_journee) };
+        table += {to_string(renc_by_chp[i_renc_by_chp].id_ren), renc_by_chp[i_renc_by_chp].jour, renc_by_chp[i_renc_by_chp].libelle_1 + " vs " + renc_by_chp[i_renc_by_chp].libelle_2, to_string(renc_by_chp[i_renc_by_chp].num_journee) };
     }
 
     table.sort(true);
-    std::cout << table;
+    cout << table;
 
     aff("", "", "");
     aff("", "-2. Sortir de l'application ", "", " ");
@@ -510,11 +507,11 @@ void action_calendrier(championnat one_chp) {
             splashscreen_end();
         } else if(choix_cal == 0) {
             system("cls");
-            grand_titre("Ajouter un match au championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
+            grand_titre("Ajouter un match au championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
             vector<equipe> eq_by_chp = sel_equipe_by_championnat(one_chp.id_chp);
             aff("", "Liste des equipes", "", " ");
             if (eq_by_chp.size() == 0) {
-                cout << "Aucune equipe pour ce championnat pour l'instant\n";
+                cout << yellow << "Aucune equipe pour ce championnat pour l'instant\n" << reset;
             } else {
                 ConsoleTable table_eq{ "ID", "equipes" };
                 table_eq.setPadding(2);
@@ -524,11 +521,11 @@ void action_calendrier(championnat one_chp) {
                     table_eq += { to_string(eq_by_chp[i_eq_by_chp].id_eq), eq_by_chp[i_eq_by_chp].libelle };
                 }
                 table_eq.sort(true);
-                std::cout << table_eq;
+                cout << table_eq;
 
                 rencontrer r(one_chp.id_chp);
                 if(ins_rencontrer(r)) {
-                    cout << "Match ajoute avec succes.\n";
+                    cout << green << "Match ajoute avec succes.\n" << reset;
                 } else {
                     cout << "Une erreur est survenue veuillez ressayer plus tard.\n";
                 }
@@ -540,17 +537,17 @@ void action_calendrier(championnat one_chp) {
             if (one_renc.size() == 1) {
                 action_one_calendrier(one_chp, one_renc[0]);
             } else {
-                cout << "Choix indisponible, veuillez ressayer: ";
+                cout << red << "Choix indisponible, veuillez ressayer: " << reset;
             }
         } else {
-            cout << "Choix indisponible, veuillez ressayer: ";
+            cout << red << "Choix indisponible, veuillez ressayer: " << reset;
         }
     } while (one_renc.size() < 1 || choix_cal < -1);
 }
 
 void action_one_equipe(championnat one_chp, equipe one_eq) {
     system("cls");
-    grand_titre("Menu de l'equipe " + std::to_string(one_eq.id_eq) + ": " + one_eq.libelle);
+    grand_titre("Menu de l'equipe " + to_string(one_eq.id_eq) + ": " + one_eq.libelle);
 
     aff("", "-2. Sortir de l'application ", "", " ");
     aff("", "-1. Retour au menu des equipes", "", " ");
@@ -567,14 +564,14 @@ void action_one_equipe(championnat one_chp, equipe one_eq) {
         } else if (choix_one_eq == 0) {
             // modification de l'equipe
             system("cls");
-            std::cout << "Vous allez apporter des modifications a l'equipe " + one_eq.libelle + "?(si vous ne voulez pas retoucher un champs, taper '*')\n";
+            cout << "Vous allez apporter des modifications a l'equipe " + one_eq.libelle + "?(si vous ne voulez pas retoucher un champs, taper '*')\n";
             std::string libelle;
-            std::cout << "libelle(valeur actuelle=" + one_eq.libelle + "): ";
-            std::cin.ignore();
-            getline(std::cin, libelle);
+            cout << "libelle(valeur actuelle=" + one_eq.libelle + "): ";
+            cin.ignore();
+            getline(cin, libelle);
             one_eq.libelle = (libelle == "*")?one_eq.libelle:libelle;
             upd_equipe(one_eq);
-            cout << "Modification effectuee avec succes.";
+            cout << green << "Modification effectuee avec succes." << reset;
             sleep(2);
             action_one_equipe(one_chp, one_eq);
         } else if (choix_one_eq == 1) {
@@ -586,7 +583,7 @@ void action_one_equipe(championnat one_chp, equipe one_eq) {
             if (del_eq.size()==1 && (del_eq == "o" || del_eq == "O")) {
                 cout << "Suppression de l'equipe en cours...\n";
                 if(del_equipe(one_eq.id_eq)) {
-                    cout << "Equipe supprime avec succes.\n";
+                    cout << green << "Equipe supprime avec succes.\n" << reset;
                     sleep(2);
                     action_equipe(one_chp);
                 } else {
@@ -601,18 +598,18 @@ void action_one_equipe(championnat one_chp, equipe one_eq) {
             }
 
         } else {
-            cout << "Choix indisponible, veuillez ressayer: ";
+            cout << red << "Choix indisponible, veuillez ressayer: " << reset;
         }
     } while (choix_one_eq<-1 && choix_one_eq>1);
 }
 
 void action_equipe(championnat one_chp) {
     system("cls");
-    grand_titre("Menu des equipes du championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
+    grand_titre("Menu des equipes du championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
     vector<equipe> eq_by_chp = sel_equipe_by_championnat(one_chp.id_chp);
     aff("", "Liste des equipes", "", " ");
     if (eq_by_chp.size() == 0) {
-        cout << "Aucune equipe pour ce championnat pour l'instant\n";
+        cout << yellow << "Aucune equipe pour ce championnat pour l'instant\n" << reset;
     }
 
     ConsoleTable table{"ID", "Nom de l'equipe"};
@@ -621,11 +618,11 @@ void action_equipe(championnat one_chp) {
 
     for (int i_eq_by_chp=0; i_eq_by_chp < eq_by_chp.size(); i_eq_by_chp++) {
         //cout << "[ID:" << eq_by_chp[i_eq_by_chp].id_eq << "] " << eq_by_chp[i_eq_by_chp].libelle << endl;
-        table += { std::to_string(eq_by_chp[i_eq_by_chp].id_eq), eq_by_chp[i_eq_by_chp].libelle };
+        table += { to_string(eq_by_chp[i_eq_by_chp].id_eq), eq_by_chp[i_eq_by_chp].libelle };
     }
 
     table.sort(true);
-    std::cout << table;
+    cout << table;
 
     aff("", "", "");
     aff("", "-2. Sortir de l'application ", "", " ");
@@ -643,12 +640,12 @@ void action_equipe(championnat one_chp) {
             splashscreen_end();
         } else if (choix_eq == 0) {
             system("cls");
-            grand_titre("Ajouter une equipe au championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
+            grand_titre("Ajouter une equipe au championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
             equipe eq_one_chp(one_chp.id_chp);
             if(!ins_equipe(eq_one_chp)) {
                 cout << "Une erreur est survenue lors de l'insertion, reessayez plus tard.";
             } else {
-                cout << "Insertion effectuee avec succes.\n";
+                cout << green << "Insertion effectuee avec succes.\n" << reset;
             }
             sleep(2);
             action_equipe(one_chp);
@@ -657,17 +654,17 @@ void action_equipe(championnat one_chp) {
             if (one_eq.size() == 1) {
                 action_one_equipe(one_chp, one_eq[0]);
             } else {
-                cout << "Choix indisponible, veuillez ressayer: ";
+                cout << red << "Choix indisponible, veuillez ressayer: " << reset;
             }
         } else {
-            cout << "Choix indisponbles reessayer: ";
+            cout << red << "Choix indisponbles reessayer: " << reset;
         }
     } while (one_eq.size()< 1 || choix_eq < -1);
 }
 
 void action_one_championnat(championnat one_chp) {
     system("cls");
-    grand_titre("Menu du championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
+    grand_titre("Menu du championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")" );
 
     aff("", "-2. Sortir de l'application ", "", " ");
     aff("", "-1. Retour a la liste des championnats", "", " ");
@@ -699,13 +696,13 @@ void action_one_championnat(championnat one_chp) {
         } else if (choix_one_chp == 4) {
             // suppression du championnat
             system("cls");
-            aff("", "Voulez-vous Supprimer le championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ") \nO:oui\nN:non", "", " ");
+            aff("", "Voulez-vous Supprimer le championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ") \nO:oui\nN:non", "", " ");
             string del_chp = "n";
             cin >> del_chp;
             if (del_chp.size()==1 && (del_chp == "o" || del_chp == "O")){
                 cout << "Suppression de l'equipe en cours...\n";
                 if(del_championnat(one_chp.id_chp)) {
-                    cout << "Championnat supprime avec succes.\n";
+                    cout << green << "Championnat supprime avec succes.\n" << reset;
                 } else {
                     cout << "Une erreur est survenue veuillez ressayer plus tard.\n";
                 }
@@ -719,30 +716,30 @@ void action_one_championnat(championnat one_chp) {
         } else if (choix_one_chp == 5) {
             // modification du championnat
             system("cls");
-            std::cout << "Vous allez apporter des modifications a le championnat " + std::to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")\n(si vous ne voulez pas retoucher un champs, taper '*')\n";
+            cout << "Vous allez apporter des modifications a le championnat " + to_string(one_chp.id_chp) + ": " + one_chp.libelle + "(saison=" + one_chp.saison + ")\n(si vous ne voulez pas retoucher un champs, taper '*')\n";
             std::string libelle, pays, division, saison;
-            std::cout << "libelle(valeur actuelle=)" + one_chp.libelle + ": ";
-            std::cin.ignore();
-            getline(std::cin, libelle);
-            std::cout << "\npays(valeur actuelle=" + one_chp.pays + "): ";
-            getline(std::cin, pays);
-            std::cout << "\ndivision(valeur actuelle=" + one_chp.division + "): ";
-            getline(std::cin, division);
-            std::cout << "\nSaison(valeur actuelle=" + one_chp.saison + "): ";
-            getline(std::cin, saison);
+            cout << "libelle(valeur actuelle=)" + one_chp.libelle + ": ";
+            cin.ignore();
+            getline(cin, libelle);
+            cout << "\npays(valeur actuelle=" + one_chp.pays + "): ";
+            getline(cin, pays);
+            cout << "\ndivision(valeur actuelle=" + one_chp.division + "): ";
+            getline(cin, division);
+            cout << "\nSaison(valeur actuelle=" + one_chp.saison + "): ";
+            getline(cin, saison);
             one_chp.libelle = (libelle == "*")?one_chp.libelle:libelle;
             one_chp.pays = (pays == "*")?one_chp.pays:pays;
             one_chp.division = (division == "*")?one_chp.division:division;
             one_chp.saison = (saison == "*")?one_chp.saison:saison;
             if(upd_championnat(one_chp)) {
-                cout << "Modification effectuee avec succes.";
+                cout << green << "Modification effectuee avec succes." << reset;
             } else {
                 cout << "Une erreur est survenue veuillez ressayer plus tard.\n";
             }
             sleep(2);
             action_one_championnat(one_chp);
         } else {
-            cout << "Choix indisponible, veuillez ressayer: ";
+            cout << red << "Choix indisponible, veuillez ressayer: " << reset;
         }
     } while (choix_one_chp > 5 || choix_one_chp < -2);
 }
@@ -754,7 +751,7 @@ void action_championnat() {
     vector<championnat> list_chp = sel_championnat();
     grand_titre("MENU CHAMPIONNAT");
     if (list_chp.size() == 0) {
-        cout << "Aucun championnat n'a ete enregistre." << endl;
+        cout << yellow <<"Aucun championnat n'a ete enregistre." << reset << endl;
     }
 
     ConsoleTable table{"ID", "LIBELLE", "PAYS", "DIVISION", "SAISON"};
@@ -767,24 +764,24 @@ void action_championnat() {
 
     for (int i=0; i < list_chp.size(); i++) {
         //cout << "[ID:" << list_chp[i].id_chp << "]  LIBELLE: " << list_chp[i].libelle << "\tPAYS: " << list_chp[i].pays << "\tDIVISION: " << list_chp[i].division << "\tSAISON: " << list_chp[i].saison <<endl;
-        table += { std::to_string(list_chp[i].id_chp), list_chp[i].libelle, list_chp[i].pays, list_chp[i].division, list_chp[i].saison };
+        table += { to_string(list_chp[i].id_chp), list_chp[i].libelle, list_chp[i].pays, list_chp[i].division, list_chp[i].saison };
     }
     table.sort(true);
-    std::cout << table;
+    cout << table;
 
     cout << "\n";
     aff("", "", "");
     aff("", "-2. Sortir de l'application", "", " ");
     aff("", "0. Ajouter un championnat", "", " ");
     aff("", "ID. Entrer l'ID d'un championnat pour en voir les details", "", " ");
-    std::cout << "\n\nEntrer votre choix: ";
+    cout << "\n\nEntrer votre choix: ";
     int choix_chp = -1000;
     do {
         read_choice(choix_chp);
         if (choix_chp == -2) {
             splashscreen_end();
         } else if (choix_chp == -1) {
-            cout << "Choix indisponible, veuillez ressayer: ";
+            cout << red << "Choix indisponible, veuillez ressayer: " << reset;
         } else if (choix_chp == 0) {
             // ajouter un championnat
             system("cls");
@@ -795,16 +792,17 @@ void action_championnat() {
             } else {
                 cout << "Une erreur est survenue, veuillez reprendre le processus";
             }
+            sleep(2);
             action_championnat();
         } else if (choix_chp > 0) {
             one_chp = sel_championnat(choix_chp);
             if(one_chp.size() == 1) {
                 action_one_championnat(one_chp[0]);
             } else {
-                cout << "Choix indisponible, veuillez ressayer: ";
+                cout << red << "Choix indisponible, veuillez ressayer: " << reset;
             }
         } else {
-            cout << "Choix indisponible, veuillez ressayer: ";
+            cout << red << "Choix indisponible, veuillez ressayer: " << reset;
         }
     } while (one_chp.size()< 1 || choix_chp < -2 || choix_chp == -1);
 }
@@ -821,8 +819,7 @@ int main() {
     GetWindowRect(console, &r);
     MoveWindow(console, 100, 50, 1170, 900, TRUE);
 
-    //splashscreen();
-
+    splashscreen();
     create_database();
     action_championnat();
 
@@ -833,7 +830,7 @@ int main() {
     table.setStyle(0);
     table += {};
     table.sort(true);
-    std::cout << table;
+    cout << table;
     */
 
 

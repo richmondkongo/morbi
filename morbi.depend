@@ -10,7 +10,7 @@
 
 1618024232 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\participer.cpp
 
-1619439712 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.cpp
+1619839228 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.cpp
 	"rencontrer.h"
 
 1460395154 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\sqlite\shell.c
@@ -99,7 +99,7 @@
 
 1618025192 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\saison.cpp
 
-1619432566 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.cpp
+1619838922 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.cpp
 	"fonctions.h"
 
 1619837230 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\main.cpp
@@ -120,7 +120,7 @@
 	"fonctions.h"
 	"lib/ConsoleTable/ConsoleTable.h"
 
-1619433346 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.h
+1619838946 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\fonctions.h
 	<string>
 	<iostream>
 	<fstream>
@@ -129,6 +129,7 @@
 	<limits>
 	<regex>
 	<unistd.h>
+	"lib/termcolor/termcolor.hpp"
 
 1618103194 source:e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\sql\db_calendrier.cpp
 	"db_calendrier.h"
@@ -215,13 +216,14 @@
 	"db.h"
 	"../class/rencontrer.h"
 
-1619359728 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.h
+1619838990 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\class\rencontrer.h
 	<string>
 	<iostream>
 	<regex>
 	"../sql/db.h"
 	"../sql/db_equipe.h"
 	"../fonctions.h"
+	"../lib/termcolor/termcolor.hpp"
 
 1606842986 e:\documents\m1\cours\semestre 2\langage c++\prog\morbi\lib\fort.hpp
 	<iomanip>

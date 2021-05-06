@@ -8,6 +8,8 @@
 #include <limits>
 #include <regex>
 #include <unistd.h>
+#include "lib/termcolor/termcolor.hpp"
+
 
 //fonction permettant de tester l'existance d'un fichier.
 //file: chaine de caract�re qui est le path du fichier

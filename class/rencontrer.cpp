@@ -15,7 +15,7 @@ rencontrer::rencontrer(int id_chp) {
     int f = 1;
     do {
         if(!good_date(jour) && f>1) {
-            std::cout << "\nLe format de votre date est incorrecte, \nla date doit etre sous la forme jj/mm/aaaa\n et doit etre valide(date >= xx/05/2021): ";
+            std::cout << termcolor::red << "\nLe format de votre date est incorrecte, \nla date doit etre sous la forme jj/mm/aaaa\n et doit etre valide(date >= xx/05/2021): " << termcolor::reset;
         }
         f += 1;
         std::cin >> jour;
@@ -25,7 +25,7 @@ rencontrer::rencontrer(int id_chp) {
     f = 1;
     do {
         if(!exist_eq(id_chp, eq_1) && f>1) {
-            std::cout << "\nCet equipe est inexistante dans la BD, \nassurez-vous d'entrer un identifiant correcte: ";
+            std::cout << termcolor::red <<"\nCet equipe est inexistante dans la BD, \nassurez-vous d'entrer un identifiant correcte: " << termcolor::reset;
         }
         f +=1;
         read_choice(eq_1);
@@ -39,11 +39,11 @@ rencontrer::rencontrer(int id_chp) {
         }
 
         if(!exist_eq(id_chp, eq_2) && f>1) {
-            std::cout << "\nCet equipe est inexistante dans la BD, \nassurez-vous d'entrer un identifiant correcte: ";
+            std::cout << termcolor::red <<"\nCet equipe est inexistante dans la BD, \nassurez-vous d'entrer un identifiant correcte: " << termcolor::reset;
         }
 
         if (this->eq_1 == this->eq_2) {
-            std::cout << "\nUne equipe ne peut jouer contre elle-meme, \nassurez-vous d'entrer un identifiant correcte: ";
+            std::cout << termcolor::red << "\nUne equipe ne peut jouer contre elle-meme, \nassurez-vous d'entrer un identifiant correcte: " << termcolor::reset;
         } else {
 
         }
@@ -55,7 +55,7 @@ rencontrer::rencontrer(int id_chp) {
     f = 1;
     do {
         if (f>1 && this->num_journee < 1) {
-            std::cout << "\nUne journee ne peut etre inferieure a 0, reessayer: ";
+            std::cout << termcolor::red << "\nUne journee ne peut etre inferieure a 0, reessayer: " << termcolor::reset;
         }
         f += 1;
         read_choice(num_journee);

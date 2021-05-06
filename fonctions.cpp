@@ -49,7 +49,7 @@ bool read_choice(int &N) {
         if ( std::cin.eof() ){
             return false;
         } else if ( std::cin.fail() ) {
-            std::cout << "Saisie incorrecte, recommencez : ";
+            std::cout << termcolor::red << "Saisie incorrecte, recommencez : " << termcolor::reset;
             std::cin.clear();
             std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
         }

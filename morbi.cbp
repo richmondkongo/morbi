@@ -52,6 +52,8 @@
 		<Unit filename="class/rencontrer.h" />
 		<Unit filename="fonctions.cpp" />
 		<Unit filename="fonctions.h" />
+		<Unit filename="lib/ConsoleTable/ConsoleTable.cpp" />
+		<Unit filename="lib/ConsoleTable/ConsoleTable.h" />
 		<Unit filename="lib/sqlite/shell.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -60,6 +62,7 @@
 		</Unit>
 		<Unit filename="lib/sqlite/sqlite3.h" />
 		<Unit filename="lib/sqlite/sqlite3ext.h" />
+		<Unit filename="lib/termcolor/termcolor.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
